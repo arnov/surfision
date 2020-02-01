@@ -9,5 +9,5 @@ WORKDIR /usr/src/app
 RUN mkdir data
 COPY . .
 
-RUN pip3 install requests
+RUN pip3 install -r requirements.txt
 CMD python get_data.py
