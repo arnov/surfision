@@ -12,8 +12,9 @@ class SurfDataset(Dataset):
         super().__init__()
         self.add_class('dataset', 1, 'surfer')
         self.add_class('dataset', 2, 'kiter')
-        self.add_class('dataset', 3, 'walker')
-        self.add_class('dataset', 4, 'dog')
+        self.add_class('dataset', 3, 'windsurfer')
+        self.add_class('dataset', 4, 'walker')
+        self.add_class('dataset', 5, 'dog')
 
     def load_dataset(self, dataset_dir, is_train=True):
         files = sorted(glob.glob(f'{dataset_dir}/*.json'))
