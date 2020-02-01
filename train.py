@@ -5,8 +5,8 @@ from surf_dataset import SurfDataset
 
 class ModelConfig(Config):
     NAME = "surfision_cfg"
-    # number of classes (background + surfer/kiter/walker/dog)
-    NUM_CLASSES = 1 + 4
+    # number of classes (background + surfer/kiter/windersurferwalker/dog)
+    NUM_CLASSES = 1 + 5
     STEPS_PER_EPOCH = 4
 
 
