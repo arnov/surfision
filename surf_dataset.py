@@ -1,3 +1,4 @@
+import os
 import glob
 import json
 from numpy import zeros
@@ -23,6 +24,8 @@ class SurfDataset(Dataset):
 
             image_id, ext = ann_path.rsplit('.', 1)
             img_path = f'{image_id}.png'
+
+            assert os.path.exists(img_path), f'{img_path} not found!'
 
             image_id = image_id.split('/')[1]
 
