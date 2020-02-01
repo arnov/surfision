@@ -1,12 +1,9 @@
-import os
 import glob
 import json
-from xml.etree import ElementTree
 from numpy import zeros
 from numpy import asarray
 from mrcnn.utils import Dataset, extract_bboxes
 from mrcnn.visualize import display_instances
-from matplotlib import pyplot
 
 
 class SurfDataset(Dataset):
@@ -18,7 +15,12 @@ class SurfDataset(Dataset):
         self.add_class('dataset', 4, 'dog')
 
     def load_dataset(self, dataset_dir, is_train=True):
-        for ann_path in glob.glob(f'{dataset_dir}/*.json'):
+        files = sorted(glob.glob(f'{dataset_dir}/*.json'))
+        for i, ann_path in enumerate(files):
+            # Hacky train test split
+            if is_train and i >= 30 or not is_train and i < 30:
+                continue
+
             image_id, ext = ann_path.rsplit('.', 1)
             img_path = f'{image_id}.png'
 
