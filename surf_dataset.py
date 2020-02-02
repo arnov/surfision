@@ -7,14 +7,19 @@ from mrcnn.utils import Dataset, extract_bboxes
 from mrcnn.visualize import display_instances
 
 
+CLASSES = {1: 'surfer',
+           2: 'kiter',
+           3: 'windsurfer',
+           4: 'walker',
+           5: 'dog'}
+
+
 class SurfDataset(Dataset):
     def __init__(self):
         super().__init__()
-        self.add_class('dataset', 1, 'surfer')
-        self.add_class('dataset', 2, 'kiter')
-        self.add_class('dataset', 3, 'windsurfer')
-        self.add_class('dataset', 4, 'walker')
-        self.add_class('dataset', 5, 'dog')
+
+        for id, cls in CLASSES.items():
+            self.add_class('dataset', id, cls)
 
     def load_dataset(self, dataset_dir, is_train=True):
         files = sorted(glob.glob(f'{dataset_dir}/*.json'))

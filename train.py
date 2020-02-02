@@ -1,13 +1,13 @@
 from mrcnn.config import Config
 from mrcnn.model import MaskRCNN
-from surf_dataset import SurfDataset
+from surf_dataset import SurfDataset, CLASSES
 
 
 class ModelConfig(Config):
     NAME = "surfision_cfg"
     # number of classes (background + surfer/kiter/windersurferwalker/dog)
-    NUM_CLASSES = 1 + 5
-    STEPS_PER_EPOCH = 4
+    NUM_CLASSES = 1 + len(CLASSES)
+    STEPS_PER_EPOCH = 50
 
 
 def main():
