@@ -13,7 +13,8 @@ CLASSES = {1: 'surfer',
            2: 'kiter',
            3: 'windsurfer',
            4: 'walker',
-           5: 'dog'}
+           5: 'dog',
+           6: 'supper'}
 
 
 class SurfDataset(Dataset):
