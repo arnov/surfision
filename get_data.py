@@ -12,7 +12,10 @@ def store_video(id):
 
 def extract_frame(id, frame_nr):
     print(f'Extracting frame {frame_nr} from {id}')
-    os.system(f'ffmpeg -i data/{id} -vf "select=eq(n\,{frame_nr})" -vframes 1 data/{id}_{frame_nr}.png -v quiet')
+    out_file = f'data/{id}_{frame_nr}.png'
+    assert not os.path.exists(out_file), f'{out_file} already exists!'
+
+    os.system(f'ffmpeg -i data/{id} -vf "select=eq(n\,{frame_nr})" -vframes 1 {out_file} -v quiet')
 
 
 def main():
