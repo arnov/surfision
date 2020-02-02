@@ -1,6 +1,8 @@
 import os
 import glob
 import json
+import random
+
 from numpy import zeros
 from numpy import asarray
 from mrcnn.utils import Dataset, extract_bboxes
@@ -67,8 +69,7 @@ if __name__ == '__main__':
     dataset.load_dataset('data')
     dataset.prepare()
 
-    # load an image
-    for image_id in range(0, 30, 10):
+    for image_id in random.sample(list(dataset.image_ids), 4):
         image = dataset.load_image(image_id)
         mask, class_ids = dataset.load_mask(image_id)
         bbox = extract_bboxes(mask)
@@ -78,4 +79,5 @@ if __name__ == '__main__':
         print(f'mask shape: {mask.shape}')
         print(f'bbox shape: {bbox.shape}')
 
-        display_instances(image, bbox, mask, class_ids, dataset.class_names)
+        display_instances(image, bbox, mask, class_ids, dataset.class_names,
+                          title=dataset.image_info[image_id]['path'])
