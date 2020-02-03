@@ -12,7 +12,7 @@ import skimage
 
 
 class PredictionConfig(Config):
-    NAME = "kangaroo_cfg"
+    NAME = "surf_cfg"
     NUM_CLASSES = ModelConfig.NUM_CLASSES
     GPU_COUNT = 1
     IMAGES_PER_GPU = 1
@@ -35,9 +35,7 @@ def plot_prediction(image, prediction, title='Prediction'):
     pyplot.show()
 
 
-@click.command()
-@click.argument('image_path', type=click.Path())
-def main(image_path):
+def predict_image(image_path, plot=True):
     cfg = PredictionConfig()
 
     image = skimage.io.imread(image_path)
@@ -50,9 +48,17 @@ def main(image_path):
     model_path = 'mask_rcnn_surfision_cfg_0005.h5'
     model.load_weights(model_path, by_name=True)
 
-    result = model.detect(sample, verbose=0)
+    prediction = model.detect(sample, verbose=0)[0]
 
-    plot_prediction(image, result[0], title=image_path)
+    if plot:
+        plot_prediction(prediction, prediction, title=image_path)
+    return prediction
+
+
+@click.command()
+@click.argument('image_path', type=click.Path())
+def main(image_path):
+    predict_image(image_path)
 
 
 if __name__ == '__main__':
