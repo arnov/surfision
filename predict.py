@@ -51,7 +51,7 @@ def predict_image(image_path, plot=True):
     prediction = model.detect(sample, verbose=0)[0]
 
     if plot:
-        plot_prediction(prediction, prediction, title=image_path)
+        plot_prediction(image, prediction, title=image_path)
     return prediction
 
 

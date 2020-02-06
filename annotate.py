@@ -1,4 +1,5 @@
 import os
+import glob
 import click
 from random import shuffle
 
@@ -7,8 +8,8 @@ def annotate(f):
     base, ext = f.rsplit('.', 1)
     output_file = f'{base}.json'
 
-    print(f'Annnotating {f}')
     if not os.path.exists(output_file):
+        print(f'Annnotating {f}')
         os.system(f'labelme {f} -O {output_file}')
 
 
@@ -20,11 +21,11 @@ def main(image_path=None):
         return
 
     dir = 'data'
-    files = os.listdir(dir)
+    files = glob.glob(f'{dir}/*.png')
     shuffle(files)
 
     for f in files:
-        annotate(dir + '/' + f)
+        annotate(f)
 
 
 if __name__ == '__main__':
