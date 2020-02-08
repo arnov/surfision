@@ -45,7 +45,7 @@ def predict_image(image_path, plot=True):
     sample = expand_dims(scaled_image, 0)
 
     model = MaskRCNN(mode='inference', model_dir='./', config=cfg)
-    model_path = 'mask_rcnn_surfision_cfg_0005.h5'
+    model_path = 'mask_rcnn_surfision_cfg_0005_v2.h5'
     model.load_weights(model_path, by_name=True)
 
     prediction = model.detect(sample, verbose=0)[0]

@@ -22,6 +22,8 @@ def main():
             print('Found more surfer(s), storing image')
             new_path = file.replace('data/', 'data/live/')
             os.rename(file, new_path)
+        else:
+            os.remove(file)
     os.remove(video_path)
 
 
