@@ -8,8 +8,8 @@ import click
 
 
 @click.command()
-@click.argument('cam')
-def main(cam='wijk'):
+@click.option('--cam', default='wijk')
+def main(cam):
     os.makedirs('data/live', exist_ok=True)
 
     image_path = fetch_frame(cam)
@@ -20,7 +20,7 @@ def main(cam='wijk'):
     print(f'Predicted: {pred_classes}')
 
     if len([c for c in pred_classes if c not in {'walker', 'dog'}]) > 0:
-        print('Found more surfer(s), storing image')
+        print('Found surfer(s), storing image')
     else:
         os.remove(image_path)
 
