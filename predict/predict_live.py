@@ -10,7 +10,7 @@ import click
 import pandas as pd
 
 
-def store_predictions(prediction):
+def store_predictions(cam, prediction):
     file_path = 'predictions.csv'
 
     counts = Counter(prediction)
@@ -19,6 +19,7 @@ def store_predictions(prediction):
             counts[c] = 0
 
     df = pd.DataFrame({col: [count] for col, count in counts.items()})
+    df['cam'] = cam
     df['timestamp'] = datetime.now()
 
     if os.path.exists(file_path):
@@ -46,7 +47,7 @@ def main(cam):
     else:
         os.remove(image_path)
 
-    store_predictions(pred_classes)
+    store_predictions(cam, pred_classes)
 
 
 if __name__ == '__main__':
