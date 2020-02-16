@@ -9,6 +9,8 @@ from matplotlib.patches import Rectangle
 
 import click
 import skimage
+import tensorflow as tf
+import logging
 
 
 class PredictionConfig(Config):
@@ -36,6 +38,7 @@ def plot_prediction(image, prediction, title='Prediction'):
 
 
 def predict_image(image_path, plot=True):
+    tf.get_logger().setLevel(logging.ERROR)
     cfg = PredictionConfig()
 
     image = skimage.io.imread(image_path)

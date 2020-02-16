@@ -5,10 +5,14 @@ import re
 import os
 
 
-class Cam(ABC):
+class Cam:
     @abstractmethod
     def store_live_frame():
         pass
+
+    def generate_image_path(self):
+        return (f'data/live/{self.__class__.__name__.lower()}_'
+                f'{datetime.now().strftime("%Y%m%d_%H%M%S")}.jpg')
 
 
 class WijkCam(Cam):
@@ -21,7 +25,7 @@ class WijkCam(Cam):
             video_path = self.store_video(video_id)
             image_path = self.extract_frame(video_path, 25)
 
-            new_path = image_path.replace('data/', 'data/live/')
+            new_path = self.generate_image_path()
             os.rename(image_path, new_path)
 
             os.remove(video_path)
@@ -57,8 +61,7 @@ class ScheveningCam(Cam):
 
     def store_live_frame(self):
         response = requests.get(self.image_url)
-        image_path = (f'data/live/{self.__class__.__name__.lower()}_'
-                      f'{datetime.now().strftime("%Y%m%d_%H%M%S")}.jpg')
+        image_path = self.generate_image_path()
 
         with open(image_path, 'wb') as f:
             f.write(response.content)

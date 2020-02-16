@@ -8,8 +8,6 @@ from train.surf_dataset import CLASSES
 
 import click
 import pandas as pd
-import tensorflow as tf
-import logging
 
 
 def store_predictions(cam, prediction):
@@ -35,7 +33,6 @@ def store_predictions(cam, prediction):
 @click.command()
 @click.option('--cam', default='wijk')
 def main(cam):
-    tf.get_logger().setLevel(logging.ERROR)
     os.makedirs('data/live', exist_ok=True)
 
     image_path = fetch_frame(cam)
