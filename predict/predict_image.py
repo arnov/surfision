@@ -1,5 +1,5 @@
-from train import ModelConfig
-from surf_dataset import CLASSES
+from train.train import ModelConfig
+from train.surf_dataset import CLASSES
 
 from mrcnn.config import Config
 from mrcnn.model import MaskRCNN, mold_image

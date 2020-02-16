@@ -1,6 +1,6 @@
 from mrcnn.config import Config
 from mrcnn.model import MaskRCNN
-from surf_dataset import SurfDataset, CLASSES
+from train.surf_dataset import SurfDataset, CLASSES
 
 
 class ModelConfig(Config):
