@@ -28,7 +28,7 @@ class SurfDataset(Dataset):
         files = sorted(glob.glob(f'{dataset_dir}/*.json'))
         for i, ann_path in enumerate(files):
             # Hacky train test split
-            if is_train and i >= 110 or not is_train and i < 110:
+            if is_train and i >= 160 or not is_train and i < 160:
                 continue
 
             image_id, ext = ann_path.rsplit('.', 1)
