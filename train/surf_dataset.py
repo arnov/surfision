@@ -32,7 +32,10 @@ class SurfDataset(Dataset):
                 continue
 
             image_id, ext = ann_path.rsplit('.', 1)
-            img_path = f'{image_id}.png'
+
+            with open(ann_path) as f:
+                annotation = json.load(f)
+            img_path = f'{dataset_dir}/{annotation["imagePath"]}'
 
             assert os.path.exists(img_path), f'{img_path} not found!'
 
