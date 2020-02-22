@@ -1,4 +1,4 @@
-from fetch.cams import WijkCam, ScheveningCam
+from fetch.cams import WijkCam, ScheveningCam, AnchorPointCam
 
 
 def fetch_frame(cam='wijk'):
@@ -6,6 +6,8 @@ def fetch_frame(cam='wijk'):
         cam = WijkCam()
     elif cam == 'scheveningen':
         cam = ScheveningCam()
+    elif cam == 'anchorpoint':
+        cam = AnchorPointCam()
     else:
         raise Exception(f'Cam not found: {cam}')
 

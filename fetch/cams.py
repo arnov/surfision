@@ -15,11 +15,7 @@ class Cam:
                 f'{datetime.now().strftime("%Y%m%d_%H%M%S")}.jpg')
 
 
-class WijkCam(Cam):
-    video_list_url = ('https://59f185ece6219.streamlock.net/aloha/_definst_/'
-                      'aloha.stream/chunklist_w1062484037.m3u8')
-    video_url = 'https://59f185ece6219.streamlock.net/aloha/_definst_/aloha.stream'
-
+class ChunkListCam(Cam):
     def store_live_frame(self):
         for video_id in self.get_video_ids():
             video_path = self.store_video(video_id)
@@ -53,7 +49,13 @@ class WijkCam(Cam):
         res = requests.get(self.video_list_url)
 
         content = res.content.decode('utf-8')
-        return [s for s in content.split('\n') if re.match('^media_.*ts$', s)]
+        return [s for s in content.split('\n') if re.match('^media.*\.ts$', s)]
+
+
+class WijkCam(ChunkListCam):
+    video_list_url = ('https://59f185ece6219.streamlock.net/aloha/_definst_/'
+                      'aloha.stream/chunklist_w1062484037.m3u8')
+    video_url = 'https://59f185ece6219.streamlock.net/aloha/_definst_/aloha.stream'
 
 
 class ScheveningCam(Cam):
@@ -67,3 +69,9 @@ class ScheveningCam(Cam):
             f.write(response.content)
 
         return image_path
+
+
+class AnchorPointCam(ChunkListCam):
+    video_list_url = ('https://cams.cdn-surfline.com/cdn-int/'
+                      'ma-anchorpoint/chunklist.m3u8')
+    video_url = 'https://cams.cdn-surfline.com/cdn-int/ma-anchorpoint'
