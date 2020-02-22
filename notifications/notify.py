@@ -1,6 +1,7 @@
 import pandas as pd
 from datetime import datetime, timedelta
 
+from notifications.sms import send_sms
 
 def main():
     df = pd.read_csv('predictions.csv')
@@ -18,7 +19,8 @@ def main():
     message = 'Ze liggen er in hoor!\n'
     for cam, avg in avg_surfers.to_dict().items():
         message += f'{cam}: ~{round(avg)} surfers\n'
-    print(message)
+
+    send_sms(message)
 
 
 if __name__ == '__main__':
