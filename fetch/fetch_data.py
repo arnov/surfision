@@ -1,15 +1,21 @@
 from fetch.cams import WijkCam, ScheveningCam, AnchorPointCam
 
 
-def fetch_frame(cam='wijk'):
-    if cam == 'wijk':
+def get_cam(cam_id):
+    if cam_id == 'wijk':
         cam = WijkCam()
-    elif cam == 'scheveningen':
+    elif cam_id == 'scheveningen':
         cam = ScheveningCam()
-    elif cam == 'anchorpoint':
+    elif cam_id == 'anchorpoint':
         cam = AnchorPointCam()
     else:
-        raise Exception(f'Cam not found: {cam}')
+        raise Exception(f'Cam not found: {cam_id}')
+
+    return cam
+
+
+def fetch_frame(cam_id='wijk'):
+    cam = get_cam(cam_id)
 
     return cam.store_live_frame()
 

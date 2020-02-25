@@ -53,12 +53,14 @@ class ChunkListCam(Cam):
 
 
 class WijkCam(ChunkListCam):
+    name = 'Wijk'
     video_list_url = ('https://59f185ece6219.streamlock.net/aloha/_definst_/'
                       'aloha.stream/chunklist_w1062484037.m3u8')
     video_url = 'https://59f185ece6219.streamlock.net/aloha/_definst_/aloha.stream'
 
 
 class ScheveningCam(Cam):
+    name = 'Scheveningen'
     image_url = 'http://scheveningenlive.nl/cam_1.jpg'
 
     def store_live_frame(self):
@@ -72,6 +74,7 @@ class ScheveningCam(Cam):
 
 
 class AnchorPointCam(ChunkListCam):
+    name = 'Anchor Point'
     video_list_url = ('https://cams.cdn-surfline.com/cdn-int/'
                       'ma-anchorpoint/chunklist.m3u8')
     video_url = 'https://cams.cdn-surfline.com/cdn-int/ma-anchorpoint'
