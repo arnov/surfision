@@ -9,3 +9,4 @@ export PYTHONPATH="$(pwd)"
 
 python predict/predict_live.py --cam wijk
 python predict/predict_live.py --cam scheveningen
+python predict/predict_live.py --cam petten

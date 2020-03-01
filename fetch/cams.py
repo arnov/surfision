@@ -14,6 +14,15 @@ class Cam:
         return (f'data/live/{self.__class__.__name__.lower()}_'
                 f'{datetime.now().strftime("%Y%m%d_%H%M%S")}.jpg')
 
+    def extract_frame(self, video_path, frame_nr):
+        print(f'Extracting frame {frame_nr} from {video_path}')
+        out_file = f'{video_path}_{frame_nr}.png'
+
+        assert not os.path.exists(out_file), f'{out_file} already exists!'
+
+        os.system(f'ffmpeg -i {video_path} -vf "select=eq(n\,{frame_nr})" -vframes 1 {out_file} -v quiet')
+        return out_file
+
 
 class ChunkListCam(Cam):
     def store_live_frame(self):
@@ -35,21 +44,29 @@ class ChunkListCam(Cam):
             f.write(res.content)
         return file_path
 
-    def extract_frame(self, video_path, frame_nr):
-        print(f'Extracting frame {frame_nr} from {video_path}')
-        out_file = f'{video_path}_{frame_nr}.png'
-
-        assert not os.path.exists(out_file), f'{out_file} already exists!'
-
-        os.system(f'ffmpeg -i {video_path} -vf "select=eq(n\,{frame_nr})" -vframes 1 {out_file} -v quiet')
-        return out_file
-
     def get_video_ids(self):
         print('Downloading video list')
         res = requests.get(self.video_list_url)
 
         content = res.content.decode('utf-8')
         return [s for s in content.split('\n') if re.match('^media.*\.ts$', s)]
+
+
+class YoutubeCam(Cam):
+    def store_live_frame(self):
+        video_path = 'tmp.mp4'
+        os.system(f'ffmpeg -i `youtube-dl -g https://youtu.be/QcurPcHwX6U` -t 00:00:05.00 -c copy {video_path}')
+        tmp_path = self.extract_frame(video_path, 25)
+
+        image_path = self.generate_image_path()
+        os.rename(tmp_path, image_path)
+        os.remove(video_path)
+
+        return image_path
+
+
+class PettenCam(YoutubeCam):
+    url = 'https://youtu.be/QcurPcHwX6U'
 
 
 class WijkCam(ChunkListCam):

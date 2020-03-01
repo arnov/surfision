@@ -1,5 +1,5 @@
 from fetch.cams import WijkCam, ScheveningCam, AnchorPointCam, SanSebastianCam, \
-    SouthBeachCam
+    SouthBeachCam, PettenCam
 
 
 def get_cam(cam_id):
@@ -13,6 +13,8 @@ def get_cam(cam_id):
         cam = SanSebastianCam()
     elif cam_id == 'southbeach':
         cam = SouthBeachCam()
+    elif cam_id == 'petten':
+        cam = PettenCam()
     else:
         raise Exception(f'Cam not found: {cam_id}')
 
