@@ -78,3 +78,17 @@ class AnchorPointCam(ChunkListCam):
     video_list_url = ('https://cams.cdn-surfline.com/cdn-int/'
                       'ma-anchorpoint/chunklist.m3u8')
     video_url = 'https://cams.cdn-surfline.com/cdn-int/ma-anchorpoint'
+
+
+class SanSebastianCam(ChunkListCam):
+    name = 'San Sebastian'
+    video_list_url = ('https://cams.cdn-surfline.com/cdn-int/'
+                      'es-sansebastianov/chunklist.m3u8')
+    video_url = 'https://cams.cdn-surfline.com/cdn-int/es-sansebastianov'
+
+
+class SouthBeachCam(ChunkListCam):
+    name = 'South Beach'
+    video_list_url = ('https://cams.cdn-surfline.com/cdn-ec/'
+                      'ec-southbeach/chunklist.m3u8')
+    video_url = 'https://cams.cdn-surfline.com/cdn-ec/ec-southbeach/'
