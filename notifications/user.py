@@ -4,11 +4,12 @@ import dateutil.parser
 
 
 class User:
-    def __init__(self, name, phone, cams, object_class, last_notification_send_at=None):
+    def __init__(self, name, phone, cams, object_class, threshold, last_notification_send_at=None):
         self.name = name
         self.phone = phone
         self.cams = cams
         self.object_class = object_class
+        self.threshold = threshold
 
         if last_notification_send_at:
             last_notification_send_at = dateutil.parser.parse(last_notification_send_at)
@@ -59,6 +60,7 @@ class User:
                            'phone': self.phone,
                            'cams': self.cams,
                            'object_class': self.object_class,
+                           'threshold': self.threshold,
                            'last_notification_send_at': ts})
 
     def __repr__(self):

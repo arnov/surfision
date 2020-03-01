@@ -1,3 +1,4 @@
 .DS_Store
 dependencies
 __pycache__
+notifications/config.jsonl

@@ -40,7 +40,7 @@ def main(cam):
     prediction = predict_image(image_path, plot=True)
     pred_classes = [CLASSES.get(c) for c in prediction['class_ids']]
 
-    print(f'Predicted: {pred_classes}')
+    print(f'Predicted: {Counter(pred_classes)}')
 
     if len([c for c in pred_classes if c not in {'walker', 'dog'}]) > 0:
         print('Found surfer(s), storing image')
