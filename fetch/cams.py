@@ -62,6 +62,7 @@ class YoutubeCam(Cam):
 
 
 class PettenCam(YoutubeCam):
+    name = 'Petten'
     url = 'https://youtu.be/QcurPcHwX6U'
 
 

@@ -37,6 +37,8 @@ def main(cam):
 
     image_path = fetch_frame(cam)
 
+    print(f'Predicting live image for {cam}')
+
     prediction = predict_image(image_path, plot=True)
     pred_classes = [CLASSES.get(c) for c in prediction['class_ids']]
 
