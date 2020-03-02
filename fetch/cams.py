@@ -54,14 +54,10 @@ class ChunkListCam(Cam):
 
 class YoutubeCam(Cam):
     def store_live_frame(self):
-        video_path = 'tmp.mp4'
-        os.system(f'ffmpeg -i `youtube-dl -g https://youtu.be/QcurPcHwX6U` -t 00:00:05.00 -c copy {video_path}')
-        tmp_path = self.extract_frame(video_path, 25)
-
         image_path = self.generate_image_path()
-        os.rename(tmp_path, image_path)
-        os.remove(video_path)
-
+        frame_nr = 25
+        os.system(f'ffmpeg -i `youtube-dl -g https://youtu.be/QcurPcHwX6U` -t 00:00:05.00 '
+                  f'-vf "select=eq(n\,{frame_nr})" -vframes 1 {image_path} -v quiet')
         return image_path
 
 
