@@ -44,7 +44,7 @@ def main(cam):
 
     print(f'Predicted: {Counter(pred_classes)}')
 
-    if len([c for c in pred_classes if c not in {'walker', 'dog'}]) > 0:
+    if len([c for c in pred_classes if c not in {'walker', 'dog', 'kiter'}]) > 2:
         print('Found surfer(s), storing image')
     else:
         os.remove(image_path)
