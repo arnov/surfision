@@ -22,7 +22,7 @@ MESSAGES = ['Ze liggen er in hoor!',
             'Maak ff je agenda snel leeg!']
 
 
-def get_avg_objects(object_class, cams, hours_ago=1000):
+def get_avg_objects(object_class, cams, hours_ago=1):
     df = pd.read_csv('predictions.csv')
 
     one_hour_ago = datetime.now() - timedelta(hours=hours_ago)
