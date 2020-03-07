@@ -24,11 +24,20 @@ class SurfDataset(Dataset):
         for id, cls in CLASSES.items():
             self.add_class('dataset', id, cls)
 
+    def get_files(self, dataset_dir):
+        files = glob.glob(f'{dataset_dir}/*.json')
+        random.seed(34)
+        random.shuffle(files)
+        return files
+
     def load_dataset(self, dataset_dir, is_train=True):
-        files = sorted(glob.glob(f'{dataset_dir}/*.json'))
+        files = self.get_files(dataset_dir)
+
+        nr_train_samples = int(len(files) * 0.8)
+
         for i, ann_path in enumerate(files):
             # Hacky train test split
-            if is_train and i >= 160 or not is_train and i < 160:
+            if is_train and i >= nr_train_samples or not is_train and i < nr_train_samples:
                 continue
 
             image_id, ext = ann_path.rsplit('.', 1)

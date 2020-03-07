@@ -23,6 +23,11 @@ def main():
     test_set.prepare()
     print('Test: %d' % len(test_set.image_ids))
 
+    # Make sure there is no overlap
+    train_ids = {i['id'] for i in train_set.image_info}
+    test_ids = {i['id'] for i in test_set.image_info}
+    assert len(train_ids & test_ids) == 0
+
     # prepare config
     config = ModelConfig()
     config.display()
