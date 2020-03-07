@@ -7,7 +7,7 @@ class ModelConfig(Config):
     NAME = "surfision_cfg"
     # number of classes (background + surfer/kiter/windersurferwalker/dog)
     NUM_CLASSES = 1 + len(CLASSES)
-    STEPS_PER_EPOCH = 150
+    STEPS_PER_EPOCH = 250
 
 
 def main():
