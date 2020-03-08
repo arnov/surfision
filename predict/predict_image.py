@@ -1,4 +1,4 @@
-from train.train import ModelConfig
+from train.train_model import ModelConfig
 from train.surf_dataset import CLASSES
 
 from mrcnn.config import Config

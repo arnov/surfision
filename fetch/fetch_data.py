@@ -1,10 +1,12 @@
 from fetch.cams import WijkCam, ScheveningCam, AnchorPointCam, SanSebastianCam, \
-    SouthBeachCam, PettenCam
+    SouthBeachCam, PettenCam, WijkTimboektoeCam
 
 
 def get_cam(cam_id):
     if cam_id == 'wijk':
         cam = WijkCam()
+    elif cam_id == 'wijktim':
+        cam = WijkTimboektoeCam()
     elif cam_id == 'scheveningen':
         cam = ScheveningCam()
     elif cam_id == 'anchorpoint':

@@ -73,6 +73,13 @@ class WijkCam(ChunkListCam):
     video_url = 'https://59f185ece6219.streamlock.net/aloha/_definst_/aloha.stream'
 
 
+class WijkTimboektoeCam(ChunkListCam):
+    name = 'Wijk'
+    video_list_url = ('https://59f185ece6219.streamlock.net/timboektoe/'
+                      'tim01.stream/chunklist_w1190299169.m3u8')
+    video_url = 'https://59f185ece6219.streamlock.net/timboektoe/tim01.stream'
+
+
 class ScheveningCam(Cam):
     name = 'Scheveningen'
     image_url = 'http://scheveningenlive.nl/cam_1.jpg'
