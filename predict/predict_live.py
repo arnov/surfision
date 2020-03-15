@@ -33,11 +33,10 @@ def store_predictions(cam, prediction):
 @click.command()
 @click.option('--cam', default='wijk')
 def main(cam):
+    print(f'{datetime.now()}: Predicting live image for {cam}')
+
     os.makedirs('data/live', exist_ok=True)
-
     image_path = fetch_frame(cam)
-
-    print(f'Predicting live image for {cam}')
 
     prediction = predict_image(image_path, plot=True)
     pred_classes = [CLASSES.get(c) for c in prediction['class_ids']]

@@ -1,13 +1,8 @@
-from mrcnn.config import Config
+from predict.predict_image import ModelConfig, PredictionConfig
+
 from mrcnn.model import MaskRCNN
-from train.surf_dataset import SurfDataset, CLASSES
-
-
-class ModelConfig(Config):
-    NAME = "surfision_cfg"
-    # number of classes (background + surfer/kiter/windersurferwalker/dog)
-    NUM_CLASSES = 1 + len(CLASSES)
-    STEPS_PER_EPOCH = 250
+from train.surf_dataset import SurfDataset
+from train.evaluate import evaluate_model
 
 
 def main():
@@ -43,6 +38,10 @@ def main():
 
     # train weights (output layers or 'heads')
     model.train(train_set, test_set, learning_rate=config.LEARNING_RATE, epochs=5, layers='heads')
+
+    cfg = PredictionConfig()
+    test_mAP = evaluate_model(test_set, model, cfg)
+    print('Test mAP: %.3f' % test_mAP)
 
 
 if __name__ == '__main__':

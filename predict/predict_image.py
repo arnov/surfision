@@ -1,4 +1,3 @@
-from train.train_model import ModelConfig
 from train.surf_dataset import CLASSES
 
 from mrcnn.config import Config
@@ -13,11 +12,27 @@ import tensorflow as tf
 import logging
 
 
+class ModelConfig(Config):
+    NAME = "surfision_cfg"
+    # number of classes (background + surfer/kiter/windersurferwalker/dog)
+    NUM_CLASSES = 1 + len(CLASSES)
+    STEPS_PER_EPOCH = 250
+
+
 class PredictionConfig(Config):
     NAME = "surf_cfg"
     NUM_CLASSES = ModelConfig.NUM_CLASSES
+    DETECTION_MIN_CONFIDENCE = 0.9
     GPU_COUNT = 1
     IMAGES_PER_GPU = 1
+
+
+def load_model(cfg):
+    model_path = 'mask_rcnn_surfision_cfg_0005_v4.h5'
+    model = MaskRCNN(mode='inference', model_dir='./', config=cfg)
+    model.load_weights(model_path, by_name=True)
+
+    return model
 
 
 def plot_prediction(image, prediction, title='Prediction'):
@@ -47,9 +62,7 @@ def predict_image(image_path, plot=True):
     scaled_image = mold_image(image, cfg)
     sample = expand_dims(scaled_image, 0)
 
-    model = MaskRCNN(mode='inference', model_dir='./', config=cfg)
-    model_path = 'mask_rcnn_surfision_cfg_0005_v3.h5'
-    model.load_weights(model_path, by_name=True)
+    model = load_model(cfg)
 
     prediction = model.detect(sample, verbose=0)[0]
 
