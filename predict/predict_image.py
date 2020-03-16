@@ -28,7 +28,7 @@ class PredictionConfig(Config):
 
 
 def load_model(cfg):
-    model_path = 'mask_rcnn_surfision_cfg_0005_v4.h5'
+    model_path = 'mask_rcnn_surfision_cfg_0005_v3.h5'
     model = MaskRCNN(mode='inference', model_dir='./', config=cfg)
     model.load_weights(model_path, by_name=True)
 
