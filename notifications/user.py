@@ -33,7 +33,7 @@ class User:
         with open('notifications/config.jsonl') as f:
             lines = f.readlines()
 
-        return [User(**json.loads(line)) for line in lines]
+        return [User(**json.loads(line)) for line in lines if line]
 
     @staticmethod
     def save_users(users):
