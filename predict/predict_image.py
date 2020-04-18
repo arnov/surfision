@@ -14,9 +14,10 @@ import logging
 
 class ModelConfig(Config):
     NAME = "surfision_cfg"
-    # number of classes (background + surfer/kiter/windersurferwalker/dog)
+    # number of classes (background + surfer/kiter/windsurfer/walker/dog)
     NUM_CLASSES = 1 + len(CLASSES)
-    STEPS_PER_EPOCH = 250
+    STEPS_PER_EPOCH = 300
+    VALIDATION_STEPS = 30
 
 
 class PredictionConfig(Config):
@@ -27,8 +28,8 @@ class PredictionConfig(Config):
     IMAGES_PER_GPU = 1
 
 
-def load_model(cfg):
-    model_path = 'mask_rcnn_surfision_cfg_0005_v3.h5'
+def load_model(cfg, model_path='mask_rcnn_surfision_cfg_0005_v4.h5'):
+    print(f'Loading model: {model_path}')
     model = MaskRCNN(mode='inference', model_dir='./', config=cfg)
     model.load_weights(model_path, by_name=True)
 
