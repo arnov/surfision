@@ -31,8 +31,12 @@ class SurfDataset(Dataset):
         return files
 
     def load_dataset(self, dataset_dir, is_train=True):
-        files = self.get_files(dataset_dir)
+        if is_train:
+            dataset_dir = f'{dataset_dir}/train'
+        else:
+            dataset_dir = f'{dataset_dir}/test'
 
+        files = self.get_files(dataset_dir)
         nr_train_samples = int(len(files) * 0.8)
 
         for i, ann_path in enumerate(files):
@@ -45,7 +49,7 @@ class SurfDataset(Dataset):
             with open(ann_path) as f:
                 annotation = json.load(f)
             img_path = f'{dataset_dir}/{annotation["imagePath"]}'
-
+            import ipdb; ipdb.set_trace()
             assert os.path.exists(img_path), f'{img_path} not found!'
 
             image_id = image_id.split('/')[1]

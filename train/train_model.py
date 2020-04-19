@@ -1,11 +1,13 @@
 from predict.predict_image import ModelConfig, PredictionConfig
 
+import click
 from mrcnn.model import MaskRCNN
 from train.surf_dataset import SurfDataset
 from train.evaluate import evaluate_model
 
 
-def main():
+@click.option('--continue_training', default=False)
+def main(continue_training):
     # prepare train set
     train_set = SurfDataset()
     train_set.load_dataset('data', is_train=True)
@@ -32,12 +34,16 @@ def main():
     model.keras_model.metrics_tensors = []
 
     # load weights (mscoco) and exclude the output layers
-    model.load_weights(
-        'mask_rcnn_coco.h5', by_name=True,
-        exclude=["mrcnn_class_logits", "mrcnn_bbox_fc",  "mrcnn_bbox", "mrcnn_mask"])
+    if continue_training:
+        model.load_weights(
+            'mask_rcnn_surfision_cfg_0005_v5.h5', by_name=True)
+    else:
+        model.load_weights(
+            'mask_rcnn_coco.h5', by_name=True,
+            exclude=["mrcnn_class_logits", "mrcnn_bbox_fc",  "mrcnn_bbox", "mrcnn_mask"])
 
     # train weights (output layers or 'heads')
-    model.train(train_set, test_set, learning_rate=config.LEARNING_RATE, epochs=5, layers='heads')
+    model.train(train_set, test_set, learning_rate=config.LEARNING_RATE, epochs=8, layers='heads')
 
     cfg = PredictionConfig()
     test_mAP = evaluate_model(test_set, model, cfg)
