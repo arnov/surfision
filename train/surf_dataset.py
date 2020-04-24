@@ -49,7 +49,7 @@ class SurfDataset(Dataset):
             with open(ann_path) as f:
                 annotation = json.load(f)
             img_path = f'{dataset_dir}/{annotation["imagePath"]}'
-            import ipdb; ipdb.set_trace()
+
             assert os.path.exists(img_path), f'{img_path} not found!'
 
             image_id = image_id.split('/')[1]

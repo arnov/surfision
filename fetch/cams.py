@@ -113,3 +113,10 @@ class SouthBeachCam(ChunkListCam):
     video_list_url = ('https://cams.cdn-surfline.com/cdn-ec/'
                       'ec-southbeach/chunklist.m3u8')
     video_url = 'https://cams.cdn-surfline.com/cdn-ec/ec-southbeach/'
+
+
+class MalibuCam(ChunkListCam):
+    name = 'Maliby'
+    video_list_url = ('https://cams.cdn-surfline.com/cdn-wc/'
+                      'wc-malibuov/chunklist.m3u8')
+    video_url = 'https://cams.cdn-surfline.com/cdn-wc/wc-malibuov/'

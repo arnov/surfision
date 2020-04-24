@@ -22,6 +22,7 @@ def main(image_path=None):
 
     dir = 'data'
     files = glob.glob(f'{dir}/*.png') + glob.glob(f'{dir}/train/*.jpg')
+    files += glob.glob(f'{dir}/*.png') + glob.glob(f'{dir}/test/*.jpg')
     shuffle(files)
 
     for f in files:
