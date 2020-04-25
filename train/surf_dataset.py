@@ -37,13 +37,8 @@ class SurfDataset(Dataset):
             dataset_dir = f'{dataset_dir}/test'
 
         files = self.get_files(dataset_dir)
-        nr_train_samples = int(len(files) * 0.8)
 
         for i, ann_path in enumerate(files):
-            # Hacky train test split
-            if is_train and i >= nr_train_samples or not is_train and i < nr_train_samples:
-                continue
-
             image_id, ext = ann_path.rsplit('.', 1)
 
             with open(ann_path) as f:

@@ -28,7 +28,7 @@ class PredictionConfig(Config):
     IMAGES_PER_GPU = 1
 
 
-def load_model(cfg, model_path='mask_rcnn_surfision_cfg_0005_v4.h5'):
+def load_model(cfg, model_path='mask_rcnn_surfision_cfg_0005_v5.h5'):
     print(f'Loading model: {model_path}')
     model = MaskRCNN(mode='inference', model_dir='./', config=cfg)
     model.load_weights(model_path, by_name=True)
