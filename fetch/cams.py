@@ -5,7 +5,7 @@ import re
 import os
 
 
-class Cam:
+class Cam(ABC):
     @abstractmethod
     def store_live_frame():
         pass
@@ -63,7 +63,7 @@ class YoutubeCam(Cam):
 
 class PettenCam(YoutubeCam):
     name = 'Petten'
-    url = 'https://youtu.be/QcurPcHwX6U'
+    url = 'https://www.youtube.com/embed/QcurPcHwX6U'
 
 
 class WijkCam(ChunkListCam):
@@ -74,7 +74,7 @@ class WijkCam(ChunkListCam):
 
 
 class WijkTimboektoeCam(ChunkListCam):
-    name = 'Wijk'
+    name = 'Wijk - Timboektoe'
     video_list_url = ('https://59f185ece6219.streamlock.net/timboektoe/'
                       'tim01.stream/chunklist_w1190299169.m3u8')
     video_url = 'https://59f185ece6219.streamlock.net/timboektoe/tim01.stream'
@@ -116,7 +116,22 @@ class SouthBeachCam(ChunkListCam):
 
 
 class MalibuCam(ChunkListCam):
-    name = 'Maliby'
+    name = 'Malibu'
     video_list_url = ('https://cams.cdn-surfline.com/cdn-wc/'
                       'wc-malibuov/chunklist.m3u8')
     video_url = 'https://cams.cdn-surfline.com/cdn-wc/wc-malibuov/'
+
+
+class ZandvoortCam(YoutubeCam):
+    name = 'Zandvoort'
+    url = 'https://www.youtube.com/embed/nS7FlgPNydc'
+
+
+class CastricumCam(YoutubeCam):
+    name = 'Castricum'
+    url = 'https://www.youtube.com/embed/BsEuSssR_HU'
+
+
+class ScheveningenHartBeachCam(YoutubeCam):
+    name = 'Scheveningen - Hart Beach'
+    url = 'https://www.youtube.com/embed/aDBjlIXsv0Q'

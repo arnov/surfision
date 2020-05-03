@@ -8,43 +8,11 @@
     }
   </style>
   <body>
-
-    <div>
-      <h1>Wijk</h1>
-      <div id="player2"></div>
-      <script>
-        var player2 = new Clappr.Player({source: "https://59f185ece6219.streamlock.net/timboektoe/tim01.stream/chunklist_w1190299169.m3u8", parentId: "#player2"});
-      </script>
-    </div>
-
-    <div>
-      <h1>Scheveningen</h1>
-        <iframe id="ytplayer" type="text/html" width="640" height="360"
-      src="https://www.youtube.com/embed/J9t__YygUJk"
-      frameborder="0"></iframe>
-    </div>
-
-    <div>
-      <h1>Petten</h1>
-      <iframe id="ytplayer" type="text/html" width="640" height="360"
-    src="https://www.youtube.com/embed/QcurPcHwX6U"
-    frameborder="0"></iframe>
-    </div>
-
-    <div>
-      <h1>Zandvoort</h1>
-      <iframe id="ytplayer" type="text/html" width="640" height="360"
-    src="https://www.youtube.com/embed/nS7FlgPNydc"
-    frameborder="0"></iframe>
-    </div>
-
-    <div>
-      <h1>Anchor Point</h1>
-      <div id="player1"></div>
-      <script>
-        var player1 = new Clappr.Player({source: "https://cams.cdn-surfline.com/cdn-int/ma-anchorpoint/chunklist.m3u8", parentId: "#player1"});
-      </script>
-    </div>
-
+    <div><h1>Petten</h1><iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/QcurPcHwX6U"frameborder="0"></iframe></div>
+    <div><h1>Castricum</h1><iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/BsEuSssR_HU"frameborder="0"></iframe></div>
+    <div><h1>Wijk</h1><div id="player_wijk"></div><script>var player2 = new Clappr.Player({source: "https://59f185ece6219.streamlock.net/aloha/_definst_/aloha.stream/chunklist_w1062484037.m3u8", parentId: "#player_wijk"});</script></div>
+    <div><h1>Wijk - Timboektoe</h1><div id="player_wijktim"></div><script>var player2 = new Clappr.Player({source: "https://59f185ece6219.streamlock.net/timboektoe/tim01.stream/chunklist_w1190299169.m3u8", parentId: "#player_wijktim"});</script></div>
+    <div><h1>Zandvoort</h1><iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/nS7FlgPNydc"frameborder="0"></iframe></div>
+    <div><h1>Scheveningen - Hart Beach</h1><iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/aDBjlIXsv0Q"frameborder="0"></iframe></div>
   </body>
 </html>

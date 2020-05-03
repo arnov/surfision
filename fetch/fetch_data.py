@@ -1,28 +1,26 @@
 from fetch.cams import WijkCam, ScheveningCam, AnchorPointCam, SanSebastianCam, \
-    SouthBeachCam, PettenCam, WijkTimboektoeCam, MalibuCam
+    SouthBeachCam, PettenCam, WijkTimboektoeCam, MalibuCam, ZandvoortCam, \
+    CastricumCam, ScheveningenHartBeachCam
+
+
+ALL_CAMS = {'wijk': WijkCam(),
+            'wijktim': WijkTimboektoeCam(),
+            'scheveningen': ScheveningCam(),
+            'anchorpoint': AnchorPointCam(),
+            'sansebastian': SanSebastianCam(),
+            'southbeach': SouthBeachCam(),
+            'petten': PettenCam(),
+            'malibu': MalibuCam(),
+            'zandvoort': ZandvoortCam(),
+            'castricum': CastricumCam(),
+            'scheveningenhartbearch': ScheveningenHartBeachCam()}
 
 
 def get_cam(cam_id):
-    if cam_id == 'wijk':
-        cam = WijkCam()
-    elif cam_id == 'wijktim':
-        cam = WijkTimboektoeCam()
-    elif cam_id == 'scheveningen':
-        cam = ScheveningCam()
-    elif cam_id == 'anchorpoint':
-        cam = AnchorPointCam()
-    elif cam_id == 'sansebastian':
-        cam = SanSebastianCam()
-    elif cam_id == 'southbeach':
-        cam = SouthBeachCam()
-    elif cam_id == 'petten':
-        cam = PettenCam()
-    elif cam_id == 'malibu':
-        cam = MalibuCam()
-    else:
+    if cam_id not in ALL_CAMS:
         raise Exception(f'Cam not found: {cam_id}')
 
-    return cam
+    return ALL_CAMS[cam_id]
 
 
 def fetch_frame(cam_id='wijk'):
