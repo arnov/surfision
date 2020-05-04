@@ -25,6 +25,8 @@ class Cam(ABC):
 
 
 class ChunkListCam(Cam):
+    cors_allowed = False
+
     def store_live_frame(self):
         for video_id in self.get_video_ids():
             video_path = self.store_video(video_id)
@@ -44,12 +46,16 @@ class ChunkListCam(Cam):
             f.write(res.content)
         return file_path
 
+    @staticmethod
+    def parse_video_list(res):
+        content = res.content.decode('utf-8')
+        return [s for s in content.split('\n') if re.match('^media.*\.ts$', s)]
+
     def get_video_ids(self):
         print('Downloading video list')
         res = requests.get(self.video_list_url)
 
-        content = res.content.decode('utf-8')
-        return [s for s in content.split('\n') if re.match('^media.*\.ts$', s)]
+        return self.parse_video_list(res)
 
 
 class YoutubeCam(Cam):
@@ -71,6 +77,7 @@ class WijkCam(ChunkListCam):
     video_list_url = ('https://59f185ece6219.streamlock.net/aloha/_definst_/'
                       'aloha.stream/chunklist_w1062484037.m3u8')
     video_url = 'https://59f185ece6219.streamlock.net/aloha/_definst_/aloha.stream'
+    cors_allowed = True
 
 
 class WijkTimboektoeCam(ChunkListCam):
@@ -78,6 +85,7 @@ class WijkTimboektoeCam(ChunkListCam):
     video_list_url = ('https://59f185ece6219.streamlock.net/timboektoe/'
                       'tim01.stream/chunklist_w1190299169.m3u8')
     video_url = 'https://59f185ece6219.streamlock.net/timboektoe/tim01.stream'
+    cors_allowed = True
 
 
 class ScheveningCam(Cam):
