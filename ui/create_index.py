@@ -25,7 +25,7 @@ for cam_id, cam in ALL_CAMS.items():
               f'<h1>{cam.name}</h1>'
               f'<div id="player_{cam_id}"></div>'
               '<script>'
-                f'var player_{cam_id} = new Clappr.Player({{source: "{video_list_url}", parentId: "#player_{cam_id}", mimeType: "application/vnd.apple.mpegurl"}});'
+                f'var player_{cam_id} = new Clappr.Player({{source: "{video_list_url}", parentId: "#player_{cam_id}", mimeType: "application/vnd.apple.mpegurl", poster: "https://i.nextmedia.com.au/Utils/ImageResizer.ashx?n=https%3A%2F%2Fi.nextmedia.com.au%2FNews%2F3910a2aa8d732fe98940c5313ce71397.jpg&h=630&w=1120&c=1&s=1"}});'
               '</script>'
             '</div>'
         )
