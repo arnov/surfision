@@ -137,9 +137,16 @@ class ZandvoortCam(YoutubeCam):
 
 class CastricumCam(YoutubeCam):
     name = 'Castricum'
-    url = 'https://www.youtube.com/embed/BsEuSssR_HU'
+    url = 'https://www.youtube.com/embed/5rkyZrQv674'
 
 
 class ScheveningenHartBeachCam(YoutubeCam):
     name = 'Scheveningen - Hart Beach'
     url = 'https://www.youtube.com/embed/aDBjlIXsv0Q'
+
+
+class RibeiraDIlhasCam(ChunkListCam):
+    name = 'Ribeira D´Ilhas'
+    video_list_url = ('https://video-auth1.iol.pt/beachcam/bcmafraribeira/'
+                      'chunks.m3u8')
+    video_url = 'https://video-auth1.iol.pt/beachcam/bcmafraribeira/'
