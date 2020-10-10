@@ -7,7 +7,7 @@ from train.evaluate import evaluate_model
 
 
 @click.option('--continue_training', default=False)
-def main(continue_training):
+def main(continue_training=False):
     # prepare train set
     train_set = SurfDataset()
     train_set.load_dataset('data', is_train=True)
